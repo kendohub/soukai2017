@@ -118,6 +118,11 @@ Bleacon.on("discover", function(bleacon) {
 				console.dir("メッセージ送信中．．．");
 				bocco_api.sendmessage(distance);
 				console.dir("メッセージ送信完了！");
+				if (before_distance == message_2 && distance == message_3) {
+					console.dir("メッセージ送信中．．．");
+					bocco_api.sendmessage("よし、行ったようだな");
+					console.dir("メッセージ送信完了！");
+				}
 			}
 
 		}//if(cnt == loopnum)
