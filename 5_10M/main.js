@@ -45,11 +45,14 @@ Bleacon.on("discover", function(bleacon) {
 		actual_rssi.push(bleacon["rssi"]);
 
 		//指定回数の計測を行ったら以下の処理を行う
-		if(cnt == loopnum){
+		if(cnt >= loopnum){
 			var sum_1 = 0;
 			var sum_2 = 0;
 			var sum_3 = 0;
 			var diff = 0;
+
+			//古いRSSIを破棄 (ちゃんと配列のlengthがloopnum個になる)
+			actual_rssi.shift();
 
 			//距離毎の重みの合計を算出
 			for(var i=0; i<loopnum; i++){
@@ -116,11 +119,6 @@ Bleacon.on("discover", function(bleacon) {
 				bocco_api.sendmessage(distance);
 				console.dir("メッセージ送信完了！");
 			}
-
-			//初期化
-			actual_rssi.length = 0;//計測したRSSIを初期化
-			cnt = 0;//計測回数を初期化
-
 
 		}//if(cnt == loopnum)
 	}
